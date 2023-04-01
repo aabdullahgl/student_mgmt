@@ -1,0 +1,61 @@
+<div class="col-lg-10">
+
+            <p>
+                <%= notice %>
+            </p>
+
+            <h1>Listing Students</h1>
+
+            <%= link_to 'New Student' , new_admin_student_path, class: "btn btn-primary btn-sm" %>
+
+
+                <table class="table table-bordered" style="text-align: center;">
+                    <thead>
+                        <tr>
+
+                            <th>Student</th>
+                            <th>Email</th>
+                            <th>Adres</th>
+                            <th>Date Of Birth</th>
+                            <th colspan="3">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @students.each do |student| %>
+                            <tr>
+                                <td style="text-align: left;">
+                                    <%= student.full_name %>
+                                </td>
+
+                                <td>
+                                    <%= student.email%>
+                                </td>
+
+                                <td>
+                                    <%= student.adress %>
+                                </td>
+
+                                <td>
+                                    <%= student.date_of_birth %>
+                                </td>
+
+                                <td>
+                                    <%= link_to 'View' , admin_student_path(student) %>
+                                </td>
+
+                                <td>
+                                    <%= link_to 'Edit' , edit_admin_student_path(student) %>
+                                </td>
+                                <td>
+                                    <%= link_to 'Delete' ,admin_student_path(student) ,method: :delete,
+                                      data:{turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                                </td>
+
+                            </tr>
+                            <% end %>
+                    </tbody>
+                </table>
+                <%= paginate @students %>
+
+</div>
